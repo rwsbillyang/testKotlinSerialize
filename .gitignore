@@ -1,0 +1,9 @@
+/.gradle
+/.idea
+/out
+/build
+*.iml
+*.ipr
+*.iws
+/server/log/ktor.log
+webapp/build.tar
