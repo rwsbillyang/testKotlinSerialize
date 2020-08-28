@@ -10,6 +10,9 @@ fun testEncodeDefaults(){
 
     //{"name":"kotlinx.serialization","title":"kotlin"}, removed the key: level
     println(json.encodeToString(Project2.serializer(), data))
+
+    //{"name":"kotlinx.serialization1.0"}
+    println(json.encodeToString(Project2.serializer(), Project2("kotlinx.serialization1.0",null, level=100, null)))
 }
 
 

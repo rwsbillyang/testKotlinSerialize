@@ -1,9 +1,9 @@
+//@file:UseContextualSerialization(Person5::class)
 import kotlinx.serialization.Contextual
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.modules.*
-
 
 @Serializable
 data class Box5(
