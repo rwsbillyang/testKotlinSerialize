@@ -4,7 +4,7 @@ import kotlinx.serialization.json.Json
 @Serializable
 class Project2(val name: String, val renamedTo: String? = null, val level: Int = 100, val title: String? = null)
 
-fun test2(){
+fun testEncodeDefaults(){
     val json = Json{ encodeDefaults = false }
     val data = Project2("kotlinx.serialization", title="kotlin")
 

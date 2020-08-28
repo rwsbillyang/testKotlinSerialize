@@ -1,6 +1,13 @@
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.Json
 
+
+@Serializable
+abstract class Box1(
+        var code: String,
+        var msg: String?
+)
+
 @Serializable
 data class Student(val name: String)
 
@@ -8,10 +15,13 @@ data class Student(val name: String)
 //@Serializable
 //data class ListBox1(val list: List<Student>?, val total: Int = 0) :  com.github.rwsbillyang.apiJson.Box()
 
+/**
+ * 继承而来
+ * */
 @Serializable
-data class ListBox2(val list: List<Student>?, val total: Int = 0) : Box()
+data class ListBox2(val list: List<Student>?, val total: Int = 0) : Box1("OK", null)
 
-fun test1()
+fun testListBox()
 {
     val json = Json{}
 
