@@ -18,21 +18,31 @@ fun testBoxAnyWithPolymorphic() {
     val format = Json {
         serializersModule = SerializersModule {
             polymorphic(Any::class) {
-                subclass(Person6::class) //注册运行时子类
+                subclass(Person6::class) //works ok
+                //subclass(String::class) //fail: Exception in thread "main" java.lang.IllegalArgumentException: Serializer for String of kind STRING cannot be serialized polymorphically with class discriminator.
+                //subclass(Long::class) //fail: Exception in thread "main" java.lang.IllegalArgumentException: Serializer for Long of kind LONG cannot be serialized polymorphically with class discriminator.
             }
         }
     }
     val box = Box6(data = Person6("Tom"))
 
-    val str = format.encodeToString(box)
-    println("Polymorphic: $str") //Polymorphic: {"code":"OK","msg":null,"data":{"type":"Person6","name":"Tom"}}
+    println("Polymorphic: ${format.encodeToString(box)}") //Polymorphic: {"code":"OK","msg":null,"data":{"type":"Person6","name":"Tom"}}
 
     try {
-        val str2 = Json.encodeToString(box) // fail
-        println("no Polymorphic: $str2")
+        println("Polymorphic with default Json: ${Json.encodeToString(box)}")
     } catch (e: Exception) {
-        //e.printStackTrace()
-        println("fail: ${e.message}")
+        //fail box polymorphic with default Json: Class 'Person6' is not registered for polymorphic serialization in the scope of 'Any'.Mark the base class as 'sealed' or register the serializer explicitly.
+        println("fail box polymorphic with default Json: ${e.message}")
     }
 
+    val box2 = Box6(data ="Test box String")
+    println("Box String with Polymorphic: ${format.encodeToString(box2)}") //if comment subclass(...)
+    //Exception in thread "main" kotlinx.serialization.SerializationException: Class 'String' is not registered for polymorphic serialization in the scope of 'Any'. Mark the base class as 'sealed' or register the serializer explicitly.
+
+
+
+    val data: Long = 1L
+    val box3 = Box5(data = data)
+    println("Box primitive Long with Polymorphic: ${format.encodeToString(box3)}")//if comment subclass(...)
+    //Exception in thread "main" kotlinx.serialization.SerializationException: Serializer for class 'Any' is not found. Mark the class as @Serializable or provide the serializer explicitly.
 }
