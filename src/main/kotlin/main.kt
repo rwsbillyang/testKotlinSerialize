@@ -1,20 +1,26 @@
 
 fun main(args: Array<String>) {
-    println("========In testListBox: test List box with inheritance=========")
+    println("========1 In testListBox: test List box with inheritance=========")
     testListBox()
 
-    println("\n========In testEncodeDefaults: test encodeDefaults=false =========")
+    println("\n========2 In testEncodeDefaults: test encodeDefaults=false =========")
     testEncodeDefaults()
 
-    println("\n========In testGeneric: test box generic type: T without customize serializer=========")
+    println("\n========3 In testGeneric: test box generic type: T without customize serializer=========")
     testGeneric()
 
-    println("\n========In testGenericWithCustomizedSerializer: test box generic type: T with customize serializer=========")
+    println("\n========4 In testCustomSerializer: customize serializer=========")
+    testCustomSerializer()
+
+    println("\n========5 In testCustomSerializerAndInheritance: customize serializer and inheritance=========")
+    testCustomSerializerAndInheritance()
+
+    println("\n========6 In testGenericWithCustomizedSerializer: test box generic type: T with customize serializer=========")
     testGenericWithCustomizedSerializer()
 
-    println("\n========In testBoxAnyWithContextual: test box any with  @Contextual=========")
+    println("\n========7 In testBoxAnyWithContextual: test box any with  @Contextual=========")
     testBoxAnyWithContextual()
 
-    println("\n========In testBoxAnyWithPolymorphic: test box any with  @Polymorphic=========")
+    println("\n========8 In testBoxAnyWithPolymorphic: test box any with  @Polymorphic=========")
     testBoxAnyWithPolymorphic()
 }
