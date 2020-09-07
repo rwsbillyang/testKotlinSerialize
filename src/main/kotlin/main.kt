@@ -23,4 +23,6 @@ fun main(args: Array<String>) {
 
     println("\n========8 In testBoxAnyWithPolymorphic: test box any with  @Polymorphic=========")
     testBoxAnyWithPolymorphic()
+
+
 }

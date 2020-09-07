@@ -32,17 +32,24 @@ fun testBoxAnyWithPolymorphic() {
         println("Polymorphic with default Json: ${Json.encodeToString(box)}")
     } catch (e: Exception) {
         //fail box polymorphic with default Json: Class 'Person6' is not registered for polymorphic serialization in the scope of 'Any'.Mark the base class as 'sealed' or register the serializer explicitly.
-        println("fail box polymorphic with default Json: ${e.message}")
+        println("1. fail box polymorphic with default Json: ${e.message}")
+    }
+    try {
+        val box2 = Box6(data ="Test box String")
+        println("Box String with Polymorphic: ${format.encodeToString(box2)}") //if comment subclass(...)
+    //Exception in thread "main" kotlinx.serialization.SerializationException: Class 'String' is not registered for polymorphic serialization in the scope of 'Any'. Mark the base class as 'sealed' or register the serializer explicitly.
+    } catch (e: Exception) {
+        //fail box polymorphic with default Json: Class 'Person6' is not registered for polymorphic serialization in the scope of 'Any'.Mark the base class as 'sealed' or register the serializer explicitly.
+        println("2.fail box polymorphic: ${e.message}")
     }
 
-    val box2 = Box6(data ="Test box String")
-    println("Box String with Polymorphic: ${format.encodeToString(box2)}") //if comment subclass(...)
-    //Exception in thread "main" kotlinx.serialization.SerializationException: Class 'String' is not registered for polymorphic serialization in the scope of 'Any'. Mark the base class as 'sealed' or register the serializer explicitly.
-
-
-
+    try {
     val data: Long = 1L
     val box3 = Box5(data = data)
     println("Box primitive Long with Polymorphic: ${format.encodeToString(box3)}")//if comment subclass(...)
     //Exception in thread "main" kotlinx.serialization.SerializationException: Serializer for class 'Any' is not found. Mark the class as @Serializable or provide the serializer explicitly.
-}
+    } catch (e: Exception) {
+        //fail box polymorphic with default Json: Class 'Person6' is not registered for polymorphic serialization in the scope of 'Any'.Mark the base class as 'sealed' or register the serializer explicitly.
+        println("3.fail box polymorphic: ${e.message}")
+    }
+    }

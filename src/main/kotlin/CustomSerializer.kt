@@ -83,8 +83,8 @@ class UserFilter(
 /**
  * 将根据不同的type类型的值，分别序列化不同的子段值
  * */
-//@Serializable(with = FilterSerializer::class)
-@Serializable
+@Serializable(with = FilterSerializer::class)
+//@Serializable
 open class Filter{
     var type: FilterType  = FilterType.Tag
     var filter: UserFilter? = null
@@ -103,7 +103,6 @@ class TextMsg(
         @SerialName("msgtype")
         val msgType: String = "text"
 ): Filter()
-
 
 object FilterSerializer : KSerializer<Filter> {
     //override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor("Filter", PrimitiveKind.STRING)
@@ -154,3 +153,5 @@ object FilterSerializer2 : KSerializer<Filter> {
         TODO("Not implement")
     }
 }
+
+
