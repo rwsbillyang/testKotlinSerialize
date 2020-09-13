@@ -17,6 +17,8 @@ dependencies {
     testImplementation(kotlin("test-junit"))
     //implementation("org.jetbrains.kotlinx:kotlinx-serialization-runtime:0.20.0") // JVM dependency
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-core:1.0.0-RC") // JVM dependency
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-properties:1.0.0-RC")
+
 }
 tasks.withType<KotlinCompile>() {
     kotlinOptions.jvmTarget = "1.8"
